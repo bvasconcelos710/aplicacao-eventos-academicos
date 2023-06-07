@@ -1,0 +1,20 @@
+{% extends "navbar.njk" %}
+{% set title = "Home" %}
+{% block style %}{% endblock %}
+{% block content %}
+    <section class="home d-flex align-items-center h-100" id="home">
+        <div class="container">
+            <div class="row d-flex align-items-center">
+                <div class="col-xl-4">
+                    <h1 class="text-balck">Registre seu evento acadêmico</h1>
+                    <button class="btn btn-primary px-3">
+                        Registrar<i class="bi bi-caret-right-fill"></i>
+                    </button>
+                </div>
+                <div class="col-xl-8">
+                    <img src="/imgs/img-mapa.jpg" alt="mapa" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
