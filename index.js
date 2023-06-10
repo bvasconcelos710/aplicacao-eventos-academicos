@@ -3,6 +3,7 @@ const app = express();
 const nunjucks = require('nunjucks');
 
 const HomeRouter = require('./src/routes/HomeRouter');
+const EventoRouter = require('./src/routes/EventoRouter');
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static('public'));
@@ -14,6 +15,7 @@ nunjucks.configure('src/views', {
 });
 
 app.use('/', HomeRouter);
+app.use('/evento', EventoRouter);
 
 app.use((err, req, res, next) => {
     console.error(err.stack);

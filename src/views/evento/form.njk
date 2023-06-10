@@ -1,0 +1,23 @@
+{% extends "navbar.njk" %}
+{% set title = "Registrar" %}
+{% block style %}{% endblock %}
+{% block content %}
+    <section class="home d-flex align-items-center h-100" id="registro">
+        <div class="container">
+            <div class="row d-flex align-items-center">
+                <div class="col-xl-6">
+                    <form>
+                        <div class="mb-3">
+                            <label for="titulo" class="form-label">Titulo</label>
+                            <input type="titulo" class="form-control" id="titulo" aria-describedby="titulo"></div>
+                            <div class="mb-3">
+                                <label for="exampleInputPassword1" class="form-label">Descrição</label>
+                                <input type="password" class="form-control" id="exampleInputPassword1"></div>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
+                        <div class="col-xl-8"></div>
+                    </div>
+                </div>
+            </section>
+        {% endblock %}
