@@ -1,4 +1,16 @@
 {% extends "navbar.njk" %}
 {% set title = "Eventos" %}
 {% block style %}{% endblock %}
-{% block content %}{% endblock %}
+{% block content %}
+    <section class="divs-deck my-3">
+        <h2>Lista de Eventos</h2>
+        {% for evento in eventos %}
+            <div class="evento-div col-sm-6 col-lg-4 col-xl-3 mb-3" id="{{ evento._id }}">
+                <h3>{{ evento.titulo }}</h3>
+                <p>{{ evento.descricao }}</p>
+                <p>{{ evento.dataInicio }}</p>
+                <p>{{ evento.dataTermino }}</p>
+            </div>
+        {% endfor %}
+    </section>
+{% endblock %}

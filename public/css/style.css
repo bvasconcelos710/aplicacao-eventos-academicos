@@ -52,7 +52,19 @@
 }
 
 img {
-    height: 75%;
-    width: 75%;
+    height: 600px;
+    width: 100%;
 
+}
+
+.link-registrar {
+    color: #FFF;
+    border-bottom: 1px solid transparent;
+    transition: 0.5s;
+    text-decoration: none;
+}
+
+.link-registrar:hover {
+    color: #FFF;
+    border-bottom: 1px solid #FFF;
 }

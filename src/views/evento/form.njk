@@ -7,28 +7,30 @@
         <div class="row d-flex align-items-center">
             <div class="col">
                 <h1 class="text-balck">Preencha as seguintes informações:</h1>
-                <form>
+                <form action="{{ '/evento/' + mode }}" method="post">
                     <div class="mb-3">
                         <label for="titulo" class="form-label">Título</label>
-                        <input type="titulo" class="form-control" id="titulo" aria-describedby="titulo">
+                        <input type="titulo" class="form-control" id="titulo" aria-describedby="titulo" name="titulo">
                     </div>
                     <div class="mb-3">
                         <label for="descricao" class="form-label">Descrição</label>
-                        <input type="titulo" class="form-control" id="descricao">
+                        <input type="titulo" class="form-control" id="descricao" name="descricao">
                     </div>
                     <div class="mb-3">
-                        <label for="data_inicio">Data de Início:</label>
-                        <input type="date" class="form-control" id="data_inicio">
+                        <label for="dataInicio">Data de Início:</label>
+                        <input type="date" class="form-control" id="data_inicio" name="dataInicio">
                     </div>
                     <div class="mb-3">
-                        <label for="data_termino">Data de Término:</label>
-                        <input type="date" class="form-control" id="data_termino">
+                        <label for="dataTermino">Data de Término:</label>
+                        <input type="date" class="form-control" id="data_termino" name="dataTermino">
                     </div>
                     <div class="mb-3">
-                        <input type="hidden" class="form-control" id="lat" disabled>
+                        <label for="latitude" hidden>Latitude:</label>
+                        <input type="text" class="form-control" id="lat" name="latitude" hidden>
                     </div>
                     <div class="mb-3">
-                        <input type="hidden" class="form-control" id="long" disabled>
+                        <label for="longitude" hidden>Longitude:</label>
+                        <input type="text" class="form-control" id="long" name="longitude" hidden>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
