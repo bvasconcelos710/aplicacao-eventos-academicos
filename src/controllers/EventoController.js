@@ -40,7 +40,7 @@ const editarEventos = async (req, res) => {
         if (result) {
             result.set(req.body);
             result.save();
-            res.status(200).send('Atualizado com sucesso');
+            res.status(200).redirect('/listar');
         }
     }).catch(e => res.status(404).send('Evento não encontrado'));
 }
