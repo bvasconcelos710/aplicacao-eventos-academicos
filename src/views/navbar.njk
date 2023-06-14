@@ -43,15 +43,15 @@
                                         <a class="nav-link active" aria-current="page" href="/">Home</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="/evento/form">Registrar Evento</a>
+                                        <a class="nav-link" href="/form">Registrar Evento</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="/evento/listar">Listar Eventos
+                                        <a class="nav-link" href="/listar">Listar Eventos
                                         </a>
                                     </li>
                                 </ul>
-                                <form class="d-flex">
-                                    <input class="form-control me-2" type="search" placeholder="Buscar Evento" aria-label="Search">
+                                <form class="d-flex" action="/buscar" method="post">
+                                    <input class="form-control me-2" type="search" placeholder="Buscar Evento" aria-label="Search" name="texto">
                                     <button class="btn btn-light" type="submit">Buscar</button>
                                 </form>
                             </div>
@@ -59,6 +59,7 @@
                     </nav>
                 </header>
                 {% block content %}{% endblock %}
+                {% block script %}{% endblock %}
             </body>
         </html>
     </body>

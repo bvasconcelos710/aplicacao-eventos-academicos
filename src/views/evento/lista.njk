@@ -2,14 +2,27 @@
 {% set title = "Eventos" %}
 {% block style %}{% endblock %}
 {% block content %}
-    <section class="divs-deck my-3">
-        <h2>Lista de Eventos</h2>
+    <h2 class="text-center">Lista de Eventos</h2>
+    <section class="card-deck my-3 mx-3">
         {% for evento in eventos %}
-            <div class="evento-div col-sm-6 col-lg-4 col-xl-3 mb-3" id="{{ evento._id }}">
-                <h3>{{ evento.titulo }}</h3>
-                <p>{{ evento.descricao }}</p>
-                <p>{{ evento.dataInicio }}</p>
-                <p>{{ evento.dataTermino }}</p>
+            <div class="card text-center">
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/listar/formeditar/{{ evento.id }}">Editar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/listar/apagar/{{ evento.id }}">Apagar</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ evento.titulo }}</h5>
+                    <p class="card-text">{{ evento.descricao }}</p>
+                    <p class="card-text">{{ evento.dataInicio }}</p>
+                    <p class="card-text">{{ evento.dataTermino }}</p>
+                    <a href="/listar/mapa/{{ evento.id }}" class="btn btn-primary">Ver no mapa</a>
+                </div>
             </div>
         {% endfor %}
     </section>

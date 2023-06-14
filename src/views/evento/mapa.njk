@@ -1,0 +1,25 @@
+{% extends "navbar.njk" %}
+{% set title = "Mapa" %}
+{% block style %}{% endblock %}
+{% block content %}
+    <div id="map" class="col"></div>
+{% endblock %}
+{% block script %}
+    <script src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap&libraries=&v=weekly" async="async"></script>
+    <script type="module">
+        let map;
+        let marker;
+        let center = {
+            lat: {{ evento.latitude }},
+            lng: {{ evento.longitude }}
+        };
+        function initMap() {
+            map = new google.maps.Map(document.querySelector("#map"), {
+                center: center,
+                zoom: 14
+            });
+            marker = new google.maps.Marker({map: map, position: center, draggable: false});
+        }
+        window.addEventListener("load", () => initMap());
+    </script>
+{% endblock %}

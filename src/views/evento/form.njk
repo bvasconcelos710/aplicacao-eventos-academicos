@@ -2,43 +2,37 @@
 {% set title = ("Registrar" if mode === 'create' else "Editar") %}
 {% block style %}{% endblock %}
 {% block content %}
-<section class="home d-flex align-items-center" id="registro">
-    <div class="container">
-        <div class="row d-flex align-items-center">
-            <div class="col">
-                <h1 class="text-balck">Preencha as seguintes informações:</h1>
-                <form action="{{ '/evento/' + mode }}" method="post">
-                    <div class="mb-3">
-                        <label for="titulo" class="form-label">Título</label>
-                        <input type="titulo" class="form-control" id="titulo" aria-describedby="titulo" name="titulo">
-                    </div>
-                    <div class="mb-3">
-                        <label for="descricao" class="form-label">Descrição</label>
-                        <input type="titulo" class="form-control" id="descricao" name="descricao">
-                    </div>
-                    <div class="mb-3">
-                        <label for="dataInicio">Data de Início:</label>
-                        <input type="date" class="form-control" id="data_inicio" name="dataInicio">
-                    </div>
-                    <div class="mb-3">
-                        <label for="dataTermino">Data de Término:</label>
-                        <input type="date" class="form-control" id="data_termino" name="dataTermino">
-                    </div>
-                    <div class="mb-3">
-                        <label for="latitude" hidden>Latitude:</label>
-                        <input type="text" class="form-control" id="lat" name="latitude" hidden>
-                    </div>
-                    <div class="mb-3">
-                        <label for="longitude" hidden>Longitude:</label>
-                        <input type="text" class="form-control" id="long" name="longitude" hidden>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
+    <section class="home d-flex align-items-center" id="registro">
+        <div class="container">
+            <div class="row d-flex align-items-center">
+                <div class="col">
+                    <h1 class="text-balck">Preencha as seguintes informações:</h1>
+                    <form action="/create" method="post">
+                        <div class="mb-3">
+                            <label for="titulo" class="form-label">Título</label>
+                            <input type="titulo" class="form-control" id="titulo" aria-describedby="titulo" name="titulo"></div>
+                        <div class="mb-3">
+                            <label for="descricao" class="form-label">Descrição</label>
+                            <input type="titulo" class="form-control" id="descricao" name="descricao"></div>
+                        <div class="mb-3">
+                            <label for="dataInicio">Data de Início:</label>
+                            <input type="date" class="form-control" id="data_inicio" name="dataInicio"></div>
+                        <div class="mb-3">
+                            <label for="dataTermino">Data de Término:</label>
+                            <input type="date" class="form-control" id="data_termino" name="dataTermino"></div>
+                        <div class="mb-3">
+                            <label for="latitude" hidden>Latitude:</label>
+                            <input type="text" class="form-control" id="lat" name="latitude" hidden></div>
+                        <div class="mb-3">
+                            <label for="longitude" hidden>Longitude:</label>
+                            <input type="text" class="form-control" id="long" name="longitude" hidden></div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+                <div id="map" class="col"></div>
             </div>
-            <div id="map" class="col"></div>
         </div>
-    </div>
-</section>
-<script src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap&libraries=&v=weekly" async="async"></script>
-<script type="module" src="/scripts/mapa.js"></script>
+    </section>
+    <script src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap&libraries=&v=weekly" async="async"></script>
+    <script type="module" src="/scripts/mapa.js"></script>
 {% endblock %}

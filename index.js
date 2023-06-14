@@ -3,8 +3,6 @@ const app = express();
 app.use(express.json());
 const nunjucks = require('nunjucks');
 
-
-const HomeRouter = require('./src/routes/HomeRouter');
 const EventoRouter = require('./src/routes/EventoRouter');
 
 const cors = require('cors');
@@ -19,8 +17,7 @@ nunjucks.configure('src/views', {
     noCache: true,
 });
 
-app.use('/', HomeRouter);
-app.use('/evento', EventoRouter);
+app.use('/', EventoRouter);
 
 app.use((err, req, res, next) => {
     console.error(err.stack);
