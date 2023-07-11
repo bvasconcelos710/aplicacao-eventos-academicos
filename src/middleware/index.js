@@ -21,12 +21,12 @@ const isAuthenticated = async (req, res, next) => {
         } catch (e) {
             req.session.user = null; // session's over
             req.flash('info', msg);
-            return res.redirect('/sigin');
+            return res.redirect('/formsigin');
         }
     } else {
         req.session.user = null; // session's over
         req.flash('info', msg);
-        return res.redirect('/signin');
+        return res.redirect('/formsignin');
     }
 };
 

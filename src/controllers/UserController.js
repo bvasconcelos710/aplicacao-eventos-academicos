@@ -1,6 +1,8 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
+const driver = require('../db/neo4j');
+
 const User = require('../models/User');
 
 const formSignUp = (req, res) => {
@@ -25,7 +27,9 @@ const signup = async (req, res) => {
         const hash = await bcrypt.hash(password, parseInt(process.env.SALT, 10));
         const newUser = { name, email, password: hash };
 
-        User.create(newUser).then(result => { res.status(201).redirect("/formsignin") }).catch(e => res.status(400).send(e));
+        User.create(newUser).then(result => {
+            driver.criarNoUser(result.name, result.id).then(resultado => { res.status(201).redirect("/formsignin") })
+        }).catch(e => res.status(400).send(e));
 
 
         req.flash('info', 'Conta criada com sucesso. Realize seu login.');
@@ -39,7 +43,7 @@ const signin = async (req, res) => {
         const { email, password } = req.body;
 
         const user = await User.findOne({ email });
-        console.log(user);
+
         const match = await bcrypt.compare(password, user.password);
 
         if (match) {

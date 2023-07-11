@@ -1,3 +1,4 @@
+const driver = require('../db/neo4j');
 const Evento = require('../models/Evento');
 
 const getForm = async (req, res) => {
@@ -7,8 +8,11 @@ const getForm = async (req, res) => {
 }
 
 const salvarEvento = async (req, res) => {
-    Evento.create(req.body).then(result => { res.status(201).redirect("/") }).catch(e => res.status(400).send(e));
+    Evento.create(req.body).then(result => {
+        driver.criarNoEvento(result.titulo, result.id).then(resultado => { res.status(201).redirect("/") })
+    }).catch(e => res.status(400).send(e));
 
+    req.flash('info', 'Evento registrado com sucesso.');
 }
 
 const listarEventos = async (req, res) => {
@@ -58,8 +62,25 @@ const exibirMapa = async (req, res) => {
     }).catch(e => res.status(400).send(e));
 }
 
+const relacionamentoUserEvento = async (req, res) => {
+    const userId = req.params.userid;
+    const eventId = req.params.eventid;
+    driver.criarRelacionamento(userId, eventId).then(resultado => { res.status(201).redirect("/") }).catch(e => res.status(400).send(e));
+}
+
+const buscarEventosUser = async (req, res) => {
+    const userId = req.params.id;
+    driver.buscarEventosUser(userId).then(results => {
+        Evento.find({ _id: { $in: results } }).then(eventos => res.status(200).render('evento/lista.njk', { eventos }));
+
+    }).catch(e => res.status(400).send(e));
+}
 
 
 
 
-module.exports = { getForm, salvarEvento, listarEventos, buscarEventos, editarEventos, getFormEditar, apagarEvento, exibirMapa };
+
+module.exports = {
+    getForm, salvarEvento, listarEventos, buscarEventos, editarEventos,
+    getFormEditar, apagarEvento, exibirMapa, relacionamentoUserEvento, buscarEventosUser
+};

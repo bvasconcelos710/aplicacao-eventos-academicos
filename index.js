@@ -5,16 +5,18 @@ const flash = require('connect-flash');
 const dotenv = require('dotenv').config();
 const nunjucks = require('nunjucks');
 const session = require('express-session');
+const cookieParser = require('cookie-parser');
 const SQLiteStore = require('connect-sqlite3')(session);
 
 
-const EventoRouter = require('./src/routes/EventoRouter');
+const routes = require('./src/routes');
 
 const cors = require('cors');
 app.use(cors());
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
+app.use(cookieParser());
 app.use(flash());
 app.use(
     session({
@@ -36,7 +38,7 @@ nunjucks.configure('src/views', {
 
 
 
-app.use('/', EventoRouter);
+app.use('/', routes);
 
 app.use((err, req, res, next) => {
     console.error(err.stack);
