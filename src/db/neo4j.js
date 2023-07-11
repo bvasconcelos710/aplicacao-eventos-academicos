@@ -48,4 +48,21 @@ async function buscarEventosUser(userId) {
     }
 }
 
-module.exports = { criarNoUser, criarNoEvento, criarRelacionamento, buscarEventosUser };
+async function buscarEventosRecomendados(userId) {
+    try {
+        var session = driver.session();
+        const result = await session.run(
+            'MATCH (u:User {idmongo: $userId})-[:INSCRITO]->(:Evento)<-[:INSCRITO]-(outro:User)-[:INSCRITO]->(eventoRecomendado:Evento) WHERE NOT (u)-[:INSCRITO]->(eventoRecomendado) RETURN eventoRecomendado.idmongo AS idmongo',
+            { userId }
+        );
+        session.close();
+
+        const eventosRecomendados = result.records.map((record) => record.get('idmongo'));
+        return eventosRecomendados;
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+module.exports = { criarNoUser, criarNoEvento, criarRelacionamento, buscarEventosUser, buscarEventosRecomendados };

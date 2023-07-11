@@ -22,6 +22,7 @@ router.get('/listar/apagar/:id', EventoController.apagarEvento);
 router.get('/listar/mapa/:id', EventoController.exibirMapa);
 router.get('/listar/inscrever/:userid/:eventid', EventoController.relacionamentoUserEvento);
 router.get('/eventosuser/:id', EventoController.buscarEventosUser);
+router.get('/eventosrecomendados/:id', EventoController.eventosRecomendados);
 
 router.get('/formsignup', UserController.formSignUp);
 router.get('/formsignin', UserController.formSignIn);

@@ -76,11 +76,17 @@ const buscarEventosUser = async (req, res) => {
     }).catch(e => res.status(400).send(e));
 }
 
+const eventosRecomendados = async (req, res) => {
+    const userId = req.params.id;
+    driver.buscarEventosRecomendados(userId).then(results => {
+        Evento.find({ _id: { $in: results } }).then(eventos => res.status(200).render('evento/lista.njk', { eventos }));
+    }).catch(e => res.status(400).send(e));
 
+}
 
 
 
 module.exports = {
     getForm, salvarEvento, listarEventos, buscarEventos, editarEventos,
-    getFormEditar, apagarEvento, exibirMapa, relacionamentoUserEvento, buscarEventosUser
+    getFormEditar, apagarEvento, exibirMapa, relacionamentoUserEvento, buscarEventosUser, eventosRecomendados
 };
