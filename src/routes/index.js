@@ -21,8 +21,10 @@ router.post('/listar/formeditar/editar/:id', EventoController.editarEventos);
 router.get('/listar/apagar/:id', EventoController.apagarEvento);
 router.get('/listar/mapa/:id', EventoController.exibirMapa);
 router.get('/listar/inscrever/:userid/:eventid', EventoController.relacionamentoUserEvento);
-router.get('/eventosuser/:id', EventoController.buscarEventosUser);
-router.get('/eventosrecomendados/:id', EventoController.eventosRecomendados);
+router.get('/eventosuser', middleware.isAuthenticated, EventoController.buscarEventosUser);
+router.get('/eventosuser/:id', middleware.isAuthenticated, EventoController.buscarEventosUser);
+router.get('/eventosrecomendados', middleware.isAuthenticated, EventoController.eventosRecomendados);
+router.get('/eventosrecomendados/:id', middleware.isAuthenticated, EventoController.eventosRecomendados);
 
 router.get('/formsignup', UserController.formSignUp);
 router.get('/formsignin', UserController.formSignIn);

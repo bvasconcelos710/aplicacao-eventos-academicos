@@ -41,8 +41,8 @@ async function buscarEventosUser(userId) {
         session.close();
 
         const eventosInscritos = result.records.map((record) => record.get('idmongo'));
-
         return eventosInscritos;
+
     } catch (error) {
         console.error(error);
     }

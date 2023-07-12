@@ -1,0 +1,42 @@
+{% extends "navbar.njk" %}
+{% set title = "Eventos" %}
+{% block style %}{% endblock %}
+{% block content %}
+    <section class="card-deck my-3 mx-3">
+        <h2 class="text-center">Lista de Eventos</h2>
+        {% for evento in eventos %}
+            <div class="card text-center">
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/listar/formeditar/{{ evento.id }}">Editar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/listar/apagar/{{ evento.id }}">Apagar</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ evento.titulo }}</h5>
+                    <p class="card-text">{{ evento.descricao }}</p>
+                    <p class="card-text data">{{ evento.dataInicio }}</p>
+                    <p class="card-text data">{{ evento.dataTermino }}</p>
+                    <a href="/listar/mapa/{{ evento.id }}" class="btn btn-primary">Ver no mapa</a>
+                </div>
+            </div>
+        {% endfor %}
+    </section>
+{% endblock %}
+{% block script %}
+    <script type="module">
+        function formatDate() {
+            const dates = document.querySelectorAll('.card-body .data');
+            dates.forEach((date) => {
+                const dateValue = date.textContent;
+                const formattedDate = new Date(dateValue).toLocaleString('pt-BR');
+                date.textContent = formattedDate;
+            });
+        }
+        formatDate();
+    </script>
+{% endblock %}

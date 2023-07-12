@@ -71,7 +71,7 @@ const relacionamentoUserEvento = async (req, res) => {
 const buscarEventosUser = async (req, res) => {
     const userId = req.params.id;
     driver.buscarEventosUser(userId).then(results => {
-        Evento.find({ _id: { $in: results } }).then(eventos => res.status(200).render('evento/lista.njk', { eventos }));
+        Evento.find({ _id: { $in: results } }).then(eventos => res.status(200).render('evento/eventosuser.njk', { eventos }));
 
     }).catch(e => res.status(400).send(e));
 }
@@ -79,7 +79,7 @@ const buscarEventosUser = async (req, res) => {
 const eventosRecomendados = async (req, res) => {
     const userId = req.params.id;
     driver.buscarEventosRecomendados(userId).then(results => {
-        Evento.find({ _id: { $in: results } }).then(eventos => res.status(200).render('evento/lista.njk', { eventos }));
+        Evento.find({ _id: { $in: results } }).then(eventos => res.status(200).render('evento/recomendados.njk', { eventos }));
     }).catch(e => res.status(400).send(e));
 
 }
