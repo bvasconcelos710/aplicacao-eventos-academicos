@@ -19,16 +19,13 @@ async function criarNoEvento(titulo, id) {
 }
 
 async function criarRelacionamento(userId, eventoId) {
-    try {
-        var session = driver.session();
-        await session.run('MATCH (u:User {idmongo:$userId}) , (e:Evento {idmongo:$eventoId}) CREATE (u)-[:INSCRITO]->(e)', {
-            userId: userId,
-            eventoId: eventoId
-        }).then(result => console.log(result.summary.counters._stats.relationshipsCreated));
-        session.close();
-    } catch (error) {
-        console.log(error);
-    }
+    var session = driver.session();
+    await session.run('MATCH (u:User {idmongo:$userId}) OPTIONAL MATCH (e:Evento {idmongo:$eventoId}) CREATE (u)-[:INSCRITO]->(e)', {
+        userId: userId,
+        eventoId: eventoId
+    }).then(result => console.log(result.summary.counters._stats.relationshipsCreated));
+    session.close();
+
 }
 
 async function buscarEventosUser(userId) {
